@@ -19,7 +19,7 @@ pipeline {
         }
         stage('copy app'){
             steps{
-                sh "cp target/devops-upem-ws2-0.0.1-SNAPSHOT.jar ./"
+                sh "cp target/aquarium-0.0.1-SNAPSHOT.jar ./"
             }
         }
     }

@@ -22,18 +22,18 @@ public class AnimalRessource {
     }
 
     @PostMapping("/animals")
-    public Animal postPersonne(@RequestBody Animal animal){
+    public Animal postAnimal(@RequestBody Animal animal){
         animalService.createAnimal(animal);
         return animal;
     }
 
     @DeleteMapping("/animals/{id}")
-    public Animal deletePersonne(@PathVariable Long id){
+    public Animal deleteAnimal(@PathVariable Long id){
         return animalService.deleteAnimal(id);
     }
 
     @PutMapping("/animals/{id}")
-    public Animal updatePersonne(@PathVariable Long id, @RequestBody Animal animal){
+    public Animal updateAnimal(@PathVariable Long id, @RequestBody Animal animal){
         return animalService.updateAnimal(id, animal);
     }
 

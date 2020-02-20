@@ -1,6 +1,7 @@
 package com.aquarium.aquarium.service;
 
 import com.aquarium.aquarium.model.Animal;
+import com.aquarium.aquarium.model.Species;
 import com.aquarium.aquarium.repository.AnimalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

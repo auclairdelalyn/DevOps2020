@@ -45,7 +45,7 @@ public class AquariumApplication implements CommandLineRunner {
 		empl.add(e);
 		Bath b=bathService.createBath(new Bath(50L, 25.5, Bath.State.clean, s,e));
 		Animal a=animalService.createAnimal(new Animal("moi", Animal.Sex.Male,"dev", new Date(), sp, b));
-		Planning p=planningService.createPlanning(new Planning("faire caca", 15L, 20l, Planning.Day.everyday, true/*, empl, b*/));
+		Planning p=planningService.createPlanning(new Planning("faire caca", 15L, 20l, Planning.Day.everyday, true, empl, b));
 		//b=bathService.createBath(b);
 		/*s.addBath(b);
 		Employee e=employeeService.createEmployee(new Employee("aaaa","bbbb", "sdfdf", new Date(), "ss", true));

@@ -31,7 +31,7 @@ public class Animal {
 
     @ManyToOne(//fetch=FetchType.LAZY,
             cascade = CascadeType.MERGE)
-    @JsonIgnoreProperties("animals")
+    @JsonIgnoreProperties({"animals","plannings","resp"})
     private Bath bath;
 
     public enum Sex{

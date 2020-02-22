@@ -29,14 +29,14 @@ public class Employee {
     @OneToMany(mappedBy = "resp",
             fetch=FetchType.LAZY,
             cascade = CascadeType.MERGE)
-    @JsonIgnoreProperties({"resp","sector"})
+    @JsonIgnoreProperties({"resp","sector","plannings","animals"})
     private Set<Bath> baths;
 
-    /*@ManyToMany(mappedBy = "employees",
+    @ManyToMany(mappedBy = "employees",
             fetch=FetchType.LAZY,
             cascade = CascadeType.MERGE)
-    @JsonIgnoreProperties("employees")
-    private Set<Planning> plannings;*/
+    @JsonIgnoreProperties({"employees","bath"})
+    private Set<Planning> plannings;
 
     Employee(){}
 
@@ -49,7 +49,7 @@ public class Employee {
         this.manager=manager;
         this.sectors=sectors;
         this.baths=new HashSet<Bath>();
-        //this.plannings=new HashSet<Planning>();
+        this.plannings=new HashSet<Planning>();
     }
 
     /*public Employee(String lastname, String firstname, String address, Date birthDate, String ssNumber, boolean manager, HashSet<Sector> sectors) {
@@ -127,13 +127,13 @@ public class Employee {
         this.sectors = sectors;
     }
 
-    /*public Set<Planning> getPlannings() {
+    public Set<Planning> getPlannings() {
         return plannings;
     }
 
     public void setPlannings(Set<Planning> plannings) {
         this.plannings = plannings;
-    }*/
+    }
 
     public Long getId() {
         return id;

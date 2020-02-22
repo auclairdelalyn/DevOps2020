@@ -30,11 +30,11 @@ public class Bath {
     @JsonIgnoreProperties({"bath","species"})
     private Set<Animal> animals;
 
-    /*@OneToMany(mappedBy = "bath",
+    @OneToMany(mappedBy = "bath",
             fetch=FetchType.LAZY,
             cascade = CascadeType.MERGE)
-    @JsonIgnoreProperties({"bath","species"})
-    private Set<Planning> plannings;*/
+    @JsonIgnoreProperties("bath")
+    private Set<Planning> plannings;
 
     /*@ManyToMany(
             cascade = CascadeType.MERGE)
@@ -43,7 +43,7 @@ public class Bath {
 
     @ManyToOne(//fetch=FetchType.LAZY,
             cascade= {CascadeType.MERGE})
-    @JsonIgnoreProperties("baths")
+    @JsonIgnoreProperties({"baths","plannings"})
     private Employee resp;
 
     public enum State{
@@ -61,7 +61,7 @@ public class Bath {
         //this.species=new HashSet<Species>();
         this.animals=new HashSet<Animal>();
         this.resp=resp;
-        //this.plannings=new HashSet<Planning>();
+        this.plannings=new HashSet<Planning>();
         //this.species=species;
     }
 
@@ -144,13 +144,13 @@ public class Bath {
         this.species = species;
     }*/
 
-    /*public Set<Planning> getPlannings() {
+    public Set<Planning> getPlannings() {
         return plannings;
     }
 
     public void setPlannings(Set<Planning> plannings) {
         this.plannings = plannings;
-    }*/
+    }
 
     public Long getId() {
         return id;

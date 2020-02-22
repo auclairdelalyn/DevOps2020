@@ -37,7 +37,7 @@ public class BathService {
 
     public Bath updateBath(Long id, Bath bath){
         bathRepository.findById(id).orElseThrow(IllegalArgumentException::new);
-        bath.setId(id);
+        //bath.setId(id);
         bathRepository.save(bath);
         return bath;
     }

@@ -33,7 +33,7 @@ public class SpeciesService {
 
     public Species updateSpecies(Long id, Species species){
         speciesRepository.findById(id).orElseThrow(IllegalArgumentException::new);
-        species.setId(id);
+        //species.setId(id);
         speciesRepository.save(species);
         return species;
     }

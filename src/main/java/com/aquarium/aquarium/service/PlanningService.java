@@ -3,7 +3,9 @@ package com.aquarium.aquarium.service;
 import com.aquarium.aquarium.model.Planning;
 import com.aquarium.aquarium.repository.PlanningRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class PlanningService {
 
     @Autowired
@@ -30,7 +32,7 @@ public class PlanningService {
 
     public Planning updatePlanning(Long id, Planning planning){
         planningRepository.findById(id).orElseThrow(IllegalArgumentException::new);
-        planning.setId(id);
+        //planning.setId(id);
         planningRepository.save(planning);
         return planning;
     }

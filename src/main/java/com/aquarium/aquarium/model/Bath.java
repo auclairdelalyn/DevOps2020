@@ -4,51 +4,88 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 @Entity
 public class Bath {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name="bath_id")
+    //@Column(name="bath_id")
     private Long id;
     private Long capacity;
     private Double volume;
     private State state;
 
-    @OneToMany(fetch=FetchType.LAZY,
+    @ManyToOne(//fetch=FetchType.LAZY,
+            cascade={CascadeType.MERGE})
+    @JsonIgnoreProperties({"persons","baths"})
+    private Sector sector;
+
+    @OneToMany(mappedBy = "bath",
+            fetch=FetchType.LAZY,
             cascade = CascadeType.MERGE)
-    //@JsonIgnoreProperties("bath")
+    @JsonIgnoreProperties({"bath","species"})
     private Set<Animal> animals;
 
-    @OneToMany(fetch=FetchType.LAZY,
+    /*@OneToMany(mappedBy = "bath",
+            fetch=FetchType.LAZY,
             cascade = CascadeType.MERGE)
-    //@JsonIgnoreProperties("bath")
-    private Set<Species> species;
+    @JsonIgnoreProperties({"bath","species"})
+    private Set<Planning> plannings;*/
+
+    /*@ManyToMany(
+            cascade = CascadeType.MERGE)
+    @JsonIgnoreProperties("bath")
+    private Set<Species> species;*/
 
     @ManyToOne(//fetch=FetchType.LAZY,
             cascade= {CascadeType.MERGE})
     @JsonIgnoreProperties("baths")
-    private Sector sector;
+    private Employee resp;
 
     public enum State{
         dirty,
         clean
     }
 
-    public Bath(){}
+    Bath(){}
 
-    public Bath(Long capacity, Double volume, State state, Sector sector) {
+    public Bath(Long capacity, Double volume, State state, Sector sector, Employee resp/*, Set<Species> species*/) {
         this.capacity = capacity;
         this.volume = volume;
         this.state = state;
         this.sector = sector;
+        //this.species=new HashSet<Species>();
+        this.animals=new HashSet<Animal>();
+        this.resp=resp;
+        //this.plannings=new HashSet<Planning>();
+        //this.species=species;
     }
 
-    public void setId(Long ids){this.id=ids;}
+    /*public Bath(Long capacity, Double volume, State state, Sector sector, HashSet<Animal> animals, Employee resp) {
+        this.capacity = capacity;
+        this.volume = volume;
+        this.state = state;
+        this.sector = sector;
+        //this.species=species;
+        this.animals=animals;
+        this.resp=resp;
+    }*/
 
-    public Long getId(){
-        return this.id;
+    public void removeAnimal(Animal a){
+        for(Animal an:animals){
+            if(an.getId()==a.getId()){
+                animals.remove(an);
+            }
+        }
+    }
+
+    public void addAnimal(Animal a){
+        animals.add(a);
+        //species.add(a.getSpecies());
     }
 
     public Long getCapacity() {
@@ -75,21 +112,53 @@ public class Bath {
         this.state = state;
     }
 
-    /*public Set<> getAnimals() {
-        return animals;
-    }*/
-
     public Sector getSector() {
         return sector;
     }
 
-    public void setSector(Sector s) {
-        this.sector=sector;
+    public void setSector(Sector sector) {
+        this.sector = sector;
+    }
+
+    public Set<Animal> getAnimals() {
+        return animals;
+    }
+
+    public void setAnimals(Set<Animal> animals) {
+        this.animals = animals;
+    }
+
+    public Employee getResp() {
+        return resp;
+    }
+
+    public void setResp(Employee resp) {
+        this.resp = resp;
+    }
+
+    /*public Set<Species> getSpecies() {
+        return species;
+    }
+
+    public void setSpecies(Set<Species> species) {
+        this.species = species;
+    }*/
+
+    /*public Set<Planning> getPlannings() {
+        return plannings;
+    }
+
+    public void setPlannings(Set<Planning> plannings) {
+        this.plannings = plannings;
+    }*/
+
+    public Long getId() {
+        return id;
     }
 
     @JsonProperty("sector_id")
     private void unpackNested(Long sector_id) {
         this.sector = new Sector();
-        sector.setId(sector_id);
+        //sector.setId(sector_id);
     }
 }

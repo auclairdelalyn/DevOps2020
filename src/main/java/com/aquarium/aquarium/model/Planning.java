@@ -11,18 +11,24 @@ import java.util.Set;
 public class Planning {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name="planning_id")
+    //@Column(name="planning_id")
     private Long id;
 
     private String name;
     private long hour;
     private long minutes;
     private Day day;
+    private boolean isPublic;
 
-    @OneToOne(fetch=FetchType.LAZY,
+    /*@ManyToOne(
             cascade = CascadeType.MERGE)
-    //@JsonIgnoreProperties("planning")
+    @JsonIgnoreProperties("plannings")
     private Bath bath;
+
+    @ManyToMany(
+            cascade = CascadeType.MERGE)
+    @JsonIgnoreProperties("plannings")
+    private Set<Employee> employees;*/
 
     public enum Day{
         everyday,
@@ -35,21 +41,16 @@ public class Planning {
         sunday
     }
 
-    public Planning(){}
+    Planning(){}
 
-    public Planning(String name, long hour, long minutes, Day day) {
+    public Planning(String name, long hour, long minutes, Day day, boolean isPublic/*, Set<Employee> employees, Bath bath*/) {
         this.name = name;
         this.hour=hour;
         this.minutes=minutes;
         this.day=day;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+        this.isPublic=isPublic;
+        //this.employees=employees;
+        //this.bath=bath;
     }
 
     public String getName() {
@@ -64,37 +65,51 @@ public class Planning {
         return hour;
     }
 
-    public long getMinutes() {
-        return minutes;
-    }
-
-    public Day getDay() {
-        return day;
-    }
-
     public void setHour(long hour) {
         this.hour = hour;
+    }
+
+    public long getMinutes() {
+        return minutes;
     }
 
     public void setMinutes(long minutes) {
         this.minutes = minutes;
     }
 
+    public Day getDay() {
+        return day;
+    }
+
     public void setDay(Day day) {
         this.day = day;
     }
 
-    /*public void setBath(Bath bath) {
-        this.bath = bath;
+    public boolean isPublic() {
+        return isPublic;
+    }
+
+    public void setPublic(boolean aPublic) {
+        isPublic = aPublic;
+    }
+
+    /*public Set<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(Set<Employee> employees) {
+        this.employees = employees;
     }
 
     public Bath getBath() {
         return bath;
     }
 
-    @JsonProperty("bath_id")
-    private void unpackNested(Long bath_id) {
-        this.bath = new Bath();
-        bath.setId(bath_id);
+    public void setBath(Bath bath) {
+        this.bath = bath;
     }*/
+
+    public Long getId() {
+        return id;
+    }
 }

@@ -22,20 +22,19 @@ public class Sector {
     @JsonIgnoreProperties("sector")
     private Set<Bath> baths;
 
-    public Sector(){}
+    @ManyToMany(mappedBy = "sectors",
+            fetch=FetchType.LAZY,
+            cascade = CascadeType.MERGE)
+    @JsonIgnoreProperties({"sectors","baths"})
+    private Set<Employee> persons;
+
+    Sector(){}
 
     public Sector(String name, String localisation) {
         this.name = name;
         this.localisation = localisation;
         this.baths=new HashSet<Bath>();
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+        this.persons=new HashSet<Employee>();
     }
 
     public String getName() {
@@ -56,5 +55,21 @@ public class Sector {
 
     public Set<Bath> getBaths() {
         return baths;
+    }
+
+    public void setBaths(Set<Bath> baths) {
+        this.baths = baths;
+    }
+
+    public Set<Employee> getPersons() {
+        return persons;
+    }
+
+    public void setPersons(Set<Employee> persons) {
+        this.persons = persons;
+    }
+
+    public Long getId() {
+        return id;
     }
 }

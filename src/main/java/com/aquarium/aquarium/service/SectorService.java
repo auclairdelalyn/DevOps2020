@@ -31,7 +31,7 @@ public class SectorService {
 
     public Sector updateSector(Long id, Sector sector){
         sectorRepository.findById(id).orElseThrow(IllegalArgumentException::new);
-        sector.setId(id);
+        //sector.setId(id);
         sectorRepository.save(sector);
         return sector;
     }

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -20,8 +21,14 @@ public class Species {
     @OneToMany(mappedBy = "species",
             fetch=FetchType.LAZY,
             cascade = CascadeType.MERGE)
-    @JsonIgnoreProperties("species")
+    @JsonIgnoreProperties({"species","bath"})
     private Set<Animal> animals;
+
+    /*@ManyToMany(mappedBy = "species",
+            fetch=FetchType.LAZY,
+            cascade= {CascadeType.MERGE})
+    @JsonIgnoreProperties("species")
+    private Set<Bath> baths;*/
 
     public enum Regime{
         Alguivore,
@@ -29,25 +36,24 @@ public class Species {
         Piscivore
     }
 
-    public Species(){}
+    Species(){}
 
     public Species(String name, Long esperance, Regime regime, Integer endangered){
         this.name=name;
         this.esperance=esperance;
         this.regime=regime;
         this.endangered=endangered;
+        this.animals=new HashSet<Animal>();
+        //this.baths=new HashSet<Bath>();
     }
 
-    @Override
-    public String toString() {
-        return String.format("Espece[id=%d, name='%s', esperance='%l', regime='%s', endangered='%i']",
-                id, name, esperance, regime.toString(), endangered);
-    }
-
-    public void setId(Long ids){this.id=ids;}
-
-    public Long getId(){
-        return this.id;
+    public Species(String name, Long esperance, Regime regime, Integer endangered, Set<Animal> animals, Set<Bath> baths) {
+        this.name = name;
+        this.esperance = esperance;
+        this.regime = regime;
+        this.endangered = endangered;
+        //this.animals = animals;
+        //this.baths = baths;
     }
 
     public String getName() {
@@ -74,17 +80,31 @@ public class Species {
         this.regime = regime;
     }
 
-    public void setEndangered(Integer endangered) {
-        if(endangered>=0 && endangered<=10) {
-            this.endangered = endangered;
-        }
-    }
-
     public Integer getEndangered() {
         return endangered;
     }
 
+    public void setEndangered(Integer endangered) {
+        this.endangered = endangered;
+    }
+
     public Set<Animal> getAnimals() {
         return animals;
+    }
+
+    public void setAnimals(Set<Animal> animals) {
+        this.animals = animals;
+    }
+
+    /*public Set<Bath> getBaths() {
+        return baths;
+    }
+
+    public void setBaths(Set<Bath> baths) {
+        this.baths = baths;
+    }*/
+
+    public Long getId() {
+        return id;
     }
 }

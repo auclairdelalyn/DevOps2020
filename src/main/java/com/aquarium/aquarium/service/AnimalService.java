@@ -25,10 +25,8 @@ public class AnimalService {
         return a;
     }
 
-    public Animal deleteAnimal(Long id){
-        Animal a= animalRepository.findById(id).get();
+    public void deleteAnimal(Long id){
         animalRepository.deleteById(id);
-        return a;
     }
 
     public Animal updateAnimal(Long id, Animal animal){

@@ -24,10 +24,8 @@ public class PlanningService {
         return s;
     }
 
-    public Planning deletePlanning(Long id){
-        Planning s= planningRepository.findById(id).get();
+    public void deletePlanning(Long id){
         planningRepository.deleteById(id);
-        return s;
     }
 
     public Planning updatePlanning(Long id, Planning planning){

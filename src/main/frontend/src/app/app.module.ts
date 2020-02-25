@@ -3,14 +3,29 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BathsComponent } from './baths/baths.component';
+import { RouterModule, Routes } from '@angular/router';
+import {HttpClientModule} from '@angular/common/http';
+import { AnimalsComponent } from './animals/animals.component';
+import { EmployeesComponent } from './employees/employees.component';
+import { PlanningsComponent } from './plannings/plannings.component';
+import { SectorsComponent } from './sectors/sectors.component';
+import { SpeciesComponent } from './species/species.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BathsComponent,
+    AnimalsComponent,
+    EmployeesComponent,
+    PlanningsComponent,
+    SectorsComponent,
+    SpeciesComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

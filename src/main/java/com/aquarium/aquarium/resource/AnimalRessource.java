@@ -28,8 +28,8 @@ public class AnimalRessource {
     }
 
     @DeleteMapping("/animals/{id}")
-    public Animal deleteAnimal(@PathVariable Long id){
-        return animalService.deleteAnimal(id);
+    public void deleteAnimal(@PathVariable Long id){
+        animalService.deleteAnimal(id);
     }
 
     @PutMapping("/animals/{id}")

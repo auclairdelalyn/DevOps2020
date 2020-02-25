@@ -29,8 +29,8 @@ public class SpeciesRessource {
     }
 
     @DeleteMapping("/species/{id}")
-    public Species deleteSpecies(@PathVariable Long id){
-        return speciesService.deleteSpecies(id);
+    public void deleteSpecies(@PathVariable Long id){
+        speciesService.deleteSpecies(id);
     }
 
     @PutMapping("/species/{id}")

@@ -1,0 +1,30 @@
+<p>employees works!</p>
+
+<table>
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>FirstName</th>
+    <th>LastName</th>
+    <th>Address</th>
+    <th>BirthDate</th>
+    <th>Social Security</th>
+    <th>Manager</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let employee of employees | async">
+    <td>{{employee.id}}</td>
+    <td>{{employee.firstname}}</td>
+    <td>{{employee.lastname}}</td>
+    <td>{{employee.address}}</td>
+    <td>{{employee.birthDate}}</td>
+    <td>{{employee.ssNumber}}</td>
+    <td>{{employee.manager}}</td>
+    <td><button (click)="deleteEmployee(employee.id)">Delete</button></td>
+  </tr>
+  </tbody>
+</table>
+
+<router-outlet></router-outlet>

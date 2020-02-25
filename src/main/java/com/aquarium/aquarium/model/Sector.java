@@ -33,8 +33,8 @@ public class Sector {
     public Sector(String name, String localisation) {
         this.name = name;
         this.localisation = localisation;
-        this.baths=new HashSet<Bath>();
-        this.persons=new HashSet<Employee>();
+        //this.baths=new HashSet<Bath>();
+        //this.persons=new HashSet<Employee>();
     }
 
     public String getName() {

@@ -23,10 +23,8 @@ public class SectorService {
         return s;
     }
 
-    public Sector deleteSector(Long id){
-        Sector s= sectorRepository.findById(id).get();
+    public void deleteSector(Long id){
         sectorRepository.deleteById(id);
-        return s;
     }
 
     public Sector updateSector(Long id, Sector sector){

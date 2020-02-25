@@ -19,7 +19,7 @@ public class Bath {
     private Double volume;
     private State state;
 
-    @ManyToOne(//fetch=FetchType.LAZY,
+    @ManyToOne(
             cascade={CascadeType.MERGE})
     @JsonIgnoreProperties({"persons","baths"})
     private Sector sector;

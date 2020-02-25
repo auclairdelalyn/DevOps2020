@@ -29,15 +29,12 @@ public class BathService {
         return b;
     }
 
-    public Bath deleteBath(Long id){
-        Bath b= bathRepository.findById(id).get();
+    public void deleteBath(Long id){
         bathRepository.deleteById(id);
-        return b;
     }
 
     public Bath updateBath(Long id, Bath bath){
         bathRepository.findById(id).orElseThrow(IllegalArgumentException::new);
-        //bath.setId(id);
         bathRepository.save(bath);
         return bath;
     }

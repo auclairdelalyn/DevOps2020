@@ -11,28 +11,28 @@ public class PlanningRessource {
     @Autowired
     private PlanningService planningService;
 
-    @GetMapping("/planning")
+    @GetMapping("/plannings")
     public Iterable<Planning> getPlanning(){
         return planningService.getAll();
     }
 
-    @GetMapping("/planning/{id}")
+    @GetMapping("/plannings/{id}")
     public Planning getPlanning(@PathVariable Long id){
         return planningService.getOne(id);
     }
 
-    @PostMapping("/planning")
+    @PostMapping("/plannings")
     public Planning postPlanning(@RequestBody Planning planning){
         planningService.createPlanning(planning);
         return planning;
     }
 
-    @DeleteMapping("/planning/{id}")
-    public Planning deletePlanning(@PathVariable Long id){
-        return planningService.deletePlanning(id);
+    @DeleteMapping("/plannings/{id}")
+    public void deletePlanning(@PathVariable Long id){
+        planningService.deletePlanning(id);
     }
 
-    @PutMapping("/planning/{id}")
+    @PutMapping("/plannings/{id}")
     public Planning updatePlanning(@PathVariable Long id, @RequestBody Planning planning){
         return planningService.updatePlanning(id, planning);
     }

@@ -25,10 +25,8 @@ public class SpeciesService {
         return s;
     }
 
-    public Species deleteSpecies(Long id){
-        Species s= speciesRepository.findById(id).get();
+    public void deleteSpecies(Long id){
         speciesRepository.deleteById(id);
-        return s;
     }
 
     public Species updateSpecies(Long id, Species species){

@@ -1,0 +1,22 @@
+<p>sectors works!</p>
+
+<table>
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Localisation</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let sector of sectors | async">
+    <td>{{sector.id}}</td>
+    <td>{{sector.name}}</td>
+    <td>{{sector.localisation}}</td>
+    <td><button (click)="deleteSector(sector.id)">Delete</button></td>
+  </tr>
+  </tbody>
+</table>
+
+<router-outlet></router-outlet>

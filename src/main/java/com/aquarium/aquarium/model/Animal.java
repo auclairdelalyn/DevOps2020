@@ -18,7 +18,7 @@ public class Animal {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
-    private String nom;
+    private String name;
     private Sex sex;
     private String distinction;
     private Date arrival;
@@ -50,8 +50,8 @@ public class Animal {
         this.bath=null;
     }*/
 
-    public Animal(String nom, Sex sex, String distinction, Date arrival, Species species, Bath bath){
-        this.nom=nom;
+    public Animal(String name, Sex sex, String distinction, Date arrival, Species species, Bath bath){
+        this.name=name;
         this.sex=sex;
         this.distinction=distinction;
         this.arrival=arrival;
@@ -63,7 +63,7 @@ public class Animal {
     public String toString() {
         return String.format(
                 "Customer[id=%d, name='%s', sex='%s', distinction='%s', date of arrival='%s']",
-                id, nom, sex.toString(), distinction, arrival.toString());
+                id, name, sex.toString(), distinction, arrival.toString());
     }
 
     public void setId(Long ids){this.id=ids;}
@@ -72,12 +72,12 @@ public class Animal {
         return this.id;
     }
 
-    public String getNom() {
-        return nom;
+    public String getName() {
+        return name;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Sex getSex() { return sex; }

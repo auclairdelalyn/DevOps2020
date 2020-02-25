@@ -10,28 +10,28 @@ public class BathRessource {
     @Autowired
     private BathService bathService;
 
-    @GetMapping("/bath")
+    @GetMapping("/baths")
     public Iterable<Bath> getBath(){
         return bathService.getAll();
     }
 
-    @GetMapping("/bath/{id}")
+    @GetMapping("/baths/{id}")
     public Bath getBath(@PathVariable Long id){
         return bathService.getOne(id);
     }
 
-    @PostMapping("/bath")
+    @PostMapping("/baths")
     public Bath postBath(@RequestBody Bath bath){
         bathService.createBath(bath);
         return bath;
     }
 
-    @DeleteMapping("/bath/{id}")
-    public Bath deleteBath(@PathVariable Long id){
-        return bathService.deleteBath(id);
+    @DeleteMapping("/baths/{id}")
+    public void deleteBath(@PathVariable Long id){
+        bathService.deleteBath(id);
     }
 
-    @PutMapping("/bath/{id}")
+    @PutMapping("/baths/{id}")
     public Bath updateBath(@PathVariable Long id, @RequestBody Bath bath){
         return bathService.updateBath(id, bath);
     }

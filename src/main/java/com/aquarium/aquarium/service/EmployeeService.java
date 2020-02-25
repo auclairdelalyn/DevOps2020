@@ -24,10 +24,8 @@ public class EmployeeService {
         return b;
     }
 
-    public Employee deleteEmployee(Long id){
-        Employee b= employeeRepository.findById(id).get();
+    public void deleteEmployee(Long id){
         employeeRepository.deleteById(id);
-        return b;
     }
 
     public Employee updateEmployee(Long id, Employee employee){

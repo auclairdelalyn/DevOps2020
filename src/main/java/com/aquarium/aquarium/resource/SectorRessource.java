@@ -11,28 +11,28 @@ public class SectorRessource {
     @Autowired
     private SectorService sectorService;
 
-    @GetMapping("/sector")
+    @GetMapping("/sectors")
     public Iterable<Sector> getSector(){
         return sectorService.getAll();
     }
 
-    @GetMapping("/sector/{id}")
+    @GetMapping("/sectors/{id}")
     public Sector getSector(@PathVariable Long id){
         return sectorService.getOne(id);
     }
 
-    @PostMapping("/sector")
+    @PostMapping("/sectors")
     public Sector postSector(@RequestBody Sector sector){
         sectorService.createSector(sector);
         return sector;
     }
 
-    @DeleteMapping("/sector/{id}")
-    public Sector deleteSector(@PathVariable Long id){
-        return sectorService.deleteSector(id);
+    @DeleteMapping("/sectors/{id}")
+    public void deleteSector(@PathVariable Long id){
+        sectorService.deleteSector(id);
     }
 
-    @PutMapping("/sector/{id}")
+    @PutMapping("/sectors/{id}")
     public Sector updateSector(@PathVariable Long id, @RequestBody Sector sector){
         return sectorService.updateSector(id, sector);
     }

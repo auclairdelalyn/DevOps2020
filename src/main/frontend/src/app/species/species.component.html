@@ -1,0 +1,22 @@
+<p>species works!</p>
+
+<table>
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Esperance</th>
+    <th>Regime</th>
+    <th>Endangered</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let specie of species | async">
+    <td>{{specie.id}}</td>
+    <td>{{specie.esperance}}</td>
+    <td>{{specie.regime}}</td>
+    <td>{{specie.endangered}}</td>
+  </tr>
+  </tbody>
+</table>
+
+<router-outlet></router-outlet>

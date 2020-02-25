@@ -1,0 +1,26 @@
+<p>plannings works!</p>
+
+<table>
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Time</th>
+    <th>Day</th>
+    <th>Public</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let planning of plannings | async">
+    <td>{{planning.id}}</td>
+    <td>{{planning.name}}</td>
+    <td>{{planning.hour}}:{{planning.minutes}}</td>
+    <td>{{planning.day}}</td>
+    <td>{{planning.public}}</td>
+    <td><button (click)="deletePlanning(planning.id)">Delete</button></td>
+  </tr>
+  </tbody>
+</table>
+
+<router-outlet></router-outlet>

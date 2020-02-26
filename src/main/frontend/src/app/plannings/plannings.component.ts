@@ -12,6 +12,10 @@ import { HttpClientModule } from "@angular/common/http";
 })
 export class PlanningsComponent implements OnInit {
   plannings: Observable<Planning[]>;
+  selected: Planning;
+    select(element){
+          this.selected = element;
+        }
 
     constructor(private planningsService: PlanningsService) {}
 

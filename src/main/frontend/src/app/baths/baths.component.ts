@@ -12,7 +12,10 @@ import { HttpClientModule } from "@angular/common/http";
 })
 export class BathsComponent implements OnInit{
   baths: Observable<Bath[]>;
-
+  selected: Bath;
+    select(element){
+          this.selected = element;
+        }
     constructor(private bathsService: BathsService) {}
 
     ngOnInit() {

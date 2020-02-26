@@ -1,9 +1,9 @@
-<p>baths works!</p>
-
-<table>
+<div class="container" style="margin-top: 70px;">
+  <table class="table table-hover">
   <thead>
   <tr>
     <th>Id</th>
+    <th>Name</th>
     <th>Capacity</th>
     <th>Volume</th>
     <th>State</th>
@@ -11,14 +11,29 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let bath of baths | async">
+  <tr *ngFor="let bath of baths | async" (click)="select(bath)">
     <td>{{bath.id}}</td>
+    <td>{{bath.name}}</td>
     <td>{{bath.capacity}}</td>
     <td>{{bath.volume}}</td>
     <td>{{bath.state}}</td>
-    <td><button (click)="deleteBath(bath.id)">Delete</button></td>
+    <td><button class="btn btn-primary" (click)="select(bath)"> Show details</button></td>
   </tr>
   </tbody>
 </table>
-
+<div class="card text-center" *ngIf="selected">
+  <div class="card-header">
+    <h2>{{selected.name}}</h2>
+  </div>
+  <div class="card-block">
+    <p class="card-text">
+      Capacity: {{selected.capacity}}<BR>
+      Volume: {{selected.volume}}<BR>
+      State: {{selected.state}}<BR>
+      Sector: {{selected.sector.name}}<BR>
+      Responsable: {{selected.resp.firstname}} {{selected.resp.lastname}}<BR>
+    </p>
+  </div>
+</div>
+</div>
 <router-outlet></router-outlet>

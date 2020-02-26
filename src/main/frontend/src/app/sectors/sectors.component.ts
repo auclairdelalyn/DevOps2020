@@ -12,6 +12,10 @@ import { HttpClientModule } from "@angular/common/http";
 })
 export class SectorsComponent implements OnInit {
   sectors: Observable<Sector[]>;
+  selected: Sector;
+    select(element){
+          this.selected = element;
+        }
 
     constructor(private sectorsService: SectorsService) {}
 

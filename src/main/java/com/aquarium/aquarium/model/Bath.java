@@ -15,6 +15,7 @@ public class Bath {
     @GeneratedValue(strategy= GenerationType.AUTO)
     //@Column(name="bath_id")
     private Long id;
+    private String name;
     private Long capacity;
     private Double volume;
     private State state;
@@ -53,7 +54,8 @@ public class Bath {
 
     Bath(){}
 
-    public Bath(Long capacity, Double volume, State state, Sector sector, Employee resp/*, Set<Species> species*/) {
+    public Bath(String name, Long capacity, Double volume, State state, Sector sector, Employee resp/*, Set<Species> species*/) {
+        this.name=name;
         this.capacity = capacity;
         this.volume = volume;
         this.state = state;
@@ -86,6 +88,14 @@ public class Bath {
     public void addAnimal(Animal a){
         animals.add(a);
         //species.add(a.getSpecies());
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Long getCapacity() {

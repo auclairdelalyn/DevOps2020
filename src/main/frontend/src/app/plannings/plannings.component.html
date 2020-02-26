@@ -1,6 +1,5 @@
-<p>plannings works!</p>
-
-<table>
+<div class="container" style="margin-top: 70px;">
+  <table class="table table-hover">
   <thead>
   <tr>
     <th>Id</th>
@@ -12,15 +11,29 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let planning of plannings | async">
+  <tr *ngFor="let planning of plannings | async" (click)="select(planning)">
     <td>{{planning.id}}</td>
     <td>{{planning.name}}</td>
     <td>{{planning.hour}}:{{planning.minutes}}</td>
     <td>{{planning.day}}</td>
     <td>{{planning.public}}</td>
-    <td><button (click)="deletePlanning(planning.id)">Delete</button></td>
+    <td><button class="btn btn-primary" (click)="select(planning)"> Show details</button></td>
   </tr>
   </tbody>
 </table>
-
+<div class="card text-center" *ngIf="selected">
+  <div class="card-header">
+    <h2>{{selected.name}}</h2>
+  </div>
+  <div class="card-block">
+    <p class="card-text">
+      Hour: {{selected.hour}}:{{selected.minutes}}<BR>
+      Day: {{selected.day}}<BR>
+      Is Public: {{selected.public}}<BR>
+      Bath: {{selected.bath.name}}<BR>
+    </p>
+  </div>
+</div>
+</div>
 <router-outlet></router-outlet>
+

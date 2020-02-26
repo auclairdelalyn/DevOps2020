@@ -12,6 +12,10 @@ import { HttpClientModule } from "@angular/common/http";
 })
 export class SpeciesComponent implements OnInit {
   species: Observable<Species[]>;
+  selected: Species;
+    select(element){
+          this.selected = element;
+        }
 
     constructor(private speciesService: SpeciesService) {}
 

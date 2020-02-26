@@ -5,6 +5,7 @@ import {Planning} from './Planning';
 
 export interface Bath{
   id:number;
+  name:string;
   capacity:number;
   volume:number;
   state:number;

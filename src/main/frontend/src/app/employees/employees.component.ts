@@ -12,6 +12,10 @@ import { HttpClientModule } from "@angular/common/http";
 })
 export class EmployeesComponent implements OnInit {
   employees: Observable<Employee[]>;
+  selected: Employee;
+    select(element){
+          this.selected = element;
+        }
 
     constructor(private employeesService: EmployeesService) {}
 

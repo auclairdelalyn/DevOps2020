@@ -12,6 +12,10 @@ import { HttpClientModule } from "@angular/common/http";
 })
 export class AnimalsComponent implements OnInit {
   animals: Observable<Animal[]>;
+  selected: Animal;
+  select(element){
+        this.selected = element;
+      }
 
     constructor(private animalsService: AnimalsService) {}
 

@@ -1,6 +1,5 @@
-<p>employees works!</p>
-
-<table>
+<div class="container" style="margin-top: 70px;">
+  <table class="table table-hover">
   <thead>
   <tr>
     <th>Id</th>
@@ -14,7 +13,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let employee of employees | async">
+  <tr *ngFor="let employee of employees | async" (click)="select(employee)">
     <td>{{employee.id}}</td>
     <td>{{employee.firstname}}</td>
     <td>{{employee.lastname}}</td>
@@ -22,9 +21,23 @@
     <td>{{employee.birthDate}}</td>
     <td>{{employee.ssNumber}}</td>
     <td>{{employee.manager}}</td>
-    <td><button (click)="deleteEmployee(employee.id)">Delete</button></td>
+    <td><button class="btn btn-primary" (click)="select(employee)"> Show details</button></td>
   </tr>
   </tbody>
-</table>
-
+  </table>
+  <div class="card text-center" *ngIf="selected">
+    <div class="card-header">
+      <h2>{{selected.firstname}} {{selected.lastname}}</h2>
+    </div>
+    <div class="card-block">
+      <p class="card-text">
+        Full Name: {{selected.firstname}} {{selected.lastname}}<BR>
+        Address: {{selected.address}}<BR>
+        Birth Date: {{selected.birthDate}}<BR>
+        Social Security: {{selected.ssNumber}}<BR>
+        Is Manager: {{selected.manager}}<BR>
+      </p>
+    </div>
+  </div>
+</div>
 <router-outlet></router-outlet>

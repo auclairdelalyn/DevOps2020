@@ -1,10 +1,24 @@
-<table>
-  <th><a routerLink="/sectors">Sectors</a></th>
-  <th><a routerLink="/baths">Baths</a></th>
-  <th><a routerLink="/species">Species</a></th>
-  <th><a routerLink="/animals">Animals</a></th>
-  <th><a routerLink="/employees">Employees</a></th>
-  <th><a routerLink="/plannings">Plannings</a></th>
-</table>
+<menu>
+<header>
+  <h1 class="text-xl-center" color="white">
+    Aquarium
+  </h1>
+</header>
+<div class="container" style="margin-top: 70px; ">
+  <table class="table table-hover">
+    <thead>
+    <th><a class="btn btn-lg btn-primary" routerLink="/sectors">Sectors</a></th>
+    <th><a class="btn btn-lg btn-primary" routerLink="/baths">Baths</a></th>
+    <th><a class="btn btn-lg btn-primary" routerLink="/species">Species</a></th>
+    <th><a class="btn btn-lg btn-primary" routerLink="/animals">Animals</a></th>
+    <th><a class="btn btn-lg btn-primary" routerLink="/employees">Employees</a></th>
+    <th><a class="btn btn-lg btn-primary" routerLink="/plannings">Plannings</a></th>
+    </thead>
+  </table>
+</div>
+</menu>
 
 <router-outlet></router-outlet>
+<footer>
+  <p  class="text-xs-center">© Copyright 2020. All rights reserved.</p>
+</footer>

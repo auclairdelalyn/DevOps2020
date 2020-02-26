@@ -47,8 +47,8 @@ public class AquariumApplication implements CommandLineRunner {
 		spe.add(sp);
 		Set<Employee>empl=new HashSet<Employee>();
 		empl.add(e);
-		Bath b=bathService.createBath(new Bath(50L, 25.5, Bath.State.clean, s,e));
-		Bath b1=bathService.createBath(new Bath(50L, 27.5, Bath.State.clean, s,e));
+		Bath b=bathService.createBath(new Bath("B1", 50L, 25.5, Bath.State.clean, s,e));
+		Bath b1=bathService.createBath(new Bath("B2", 50L, 27.5, Bath.State.clean, s,e));
 		Animal a=animalService.createAnimal(new Animal("moi", Animal.Sex.Male,"dev", new Date(), sp, b));
 		Planning p=planningService.createPlanning(new Planning("faire caca", 15L, 20l, Planning.Day.everyday, true, empl, b));
 		//b=bathService.createBath(b);

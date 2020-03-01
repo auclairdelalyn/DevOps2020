@@ -21,7 +21,7 @@ public class Species {
     @OneToMany(mappedBy = "species",
             fetch=FetchType.LAZY,
             cascade = CascadeType.MERGE)
-    @JsonIgnoreProperties({"species","bath"})
+    @JsonIgnoreProperties(value={"species","bath.animals","bath.plannings","bath.resp"}/*, allowSetters=true*/)
     private Set<Animal> animals;
 
     /*@ManyToMany(mappedBy = "species",
@@ -107,4 +107,6 @@ public class Species {
     public Long getId() {
         return id;
     }
+
+    public void setId(Long id){this.id=id;}
 }

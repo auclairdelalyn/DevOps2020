@@ -19,13 +19,13 @@ public class Sector {
     @OneToMany(mappedBy = "sector",
             fetch=FetchType.LAZY,
             cascade = CascadeType.MERGE)
-    @JsonIgnoreProperties("sector")
+    @JsonIgnoreProperties(value={"sector"})
     private Set<Bath> baths;
 
     @ManyToMany(mappedBy = "sectors",
             fetch=FetchType.LAZY,
             cascade = CascadeType.MERGE)
-    @JsonIgnoreProperties({"sectors","baths"})
+    @JsonIgnoreProperties(value={"sectors","baths"})
     private Set<Employee> persons;
 
     Sector(){}
@@ -72,4 +72,6 @@ public class Sector {
     public Long getId() {
         return id;
     }
+
+    public void setId(Long id){this.id=id;}
 }

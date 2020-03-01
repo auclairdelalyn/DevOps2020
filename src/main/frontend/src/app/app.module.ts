@@ -10,6 +10,7 @@ import { AnimalsComponent } from './animals/animals.component';
 import { EmployeesComponent } from './employees/employees.component';
 import { PlanningsComponent } from './plannings/plannings.component';
 import { SectorsComponent } from './sectors/sectors.component';
+import { FormsModule } from '@angular/forms';
 import { SpeciesComponent } from './species/species.component';
 
 @NgModule({
@@ -25,7 +26,8 @@ import { SpeciesComponent } from './species/species.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

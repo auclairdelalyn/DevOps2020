@@ -21,17 +21,17 @@ public class Animal {
     private String name;
     private Sex sex;
     private String distinction;
-    private Date arrival;
-    private Date departure;
+    private String arrival;
+    private String departure;
 
-    @ManyToOne(//fetch=FetchType.LAZY,
-            cascade=CascadeType.MERGE)
-    @JsonIgnoreProperties("animals")
+    @ManyToOne//(
+            //cascade=CascadeType.MERGE)
+    @JsonIgnoreProperties(value={"animals"})
     private Species species;
 
-    @ManyToOne(//fetch=FetchType.LAZY,
-            cascade = CascadeType.MERGE)
-    @JsonIgnoreProperties({"animals","plannings","resp"})
+    @ManyToOne//(
+            //cascade = CascadeType.MERGE)
+    @JsonIgnoreProperties(value={"animals","plannings","resp.sector"})
     private Bath bath;
 
     public enum Sex{
@@ -50,7 +50,7 @@ public class Animal {
         this.bath=null;
     }*/
 
-    public Animal(String name, Sex sex, String distinction, Date arrival, Species species, Bath bath){
+    public Animal(String name, Sex sex, String distinction, String arrival, Species species, Bath bath){
         this.name=name;
         this.sex=sex;
         this.distinction=distinction;
@@ -66,7 +66,7 @@ public class Animal {
                 id, name, sex.toString(), distinction, arrival.toString());
     }
 
-    public void setId(Long ids){this.id=ids;}
+    public void setId(Long id){this.id=id;}
 
     public Long getId(){
         return this.id;
@@ -94,17 +94,17 @@ public class Animal {
         this.distinction = distinction;
     }
 
-    public Date getArrival() {
+    public String getArrival() {
         return arrival;
     }
 
-    public void setArrival(Date arrival) { this.arrival = arrival; }
+    public void setArrival(String arrival) { this.arrival = arrival; }
 
-    public Date getDeparture() {
+    public String getDeparture() {
         return departure;
     }
 
-    public void setDeparture(Date departure) { this.departure = departure; }
+    public void setDeparture(String departure) { this.departure = departure; }
 
     public Species getSpecies() {
         return species;

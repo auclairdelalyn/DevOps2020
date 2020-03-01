@@ -1,10 +1,11 @@
 import {Bath} from './Bath';
 import {Employee} from './Employee';
 
-export interface Sector{
+export class Sector{
   id:number;
   name:string;
   localisation:string;
   baths:Array<Bath>;
-  persons:Array<Employee>
+  persons:Array<Employee>;
+    constructor(){}
 }

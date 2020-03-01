@@ -15,6 +15,9 @@ export class BathsService {
   deleteBath(id: number): Observable<any> {
       return this.httpClient.delete(`${this.baseUrl}/${id}`, { responseType: 'text' });
   }
+  createBath(bath:Bath): Observable<EntityResponseType> {
+      return this.httpClient.post<Bath>('/baths', bath, { observe: 'response' });
+  }
   /*getBath(id: number) : Observable<Bath> {
     return this.httpClient.get<Bath>('/baths/' + id);
   }

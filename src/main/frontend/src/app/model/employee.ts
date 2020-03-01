@@ -2,15 +2,15 @@ import {Sector} from './Sector';
 import {Bath} from './Bath';
 import {Planning} from './Planning';
 
-export interface Employee{
+export class Employee{
   id:number;
   lastname:string;
   firstname:string;
   address:string;
-  birthDate:string;
-  ssNumber:string;
-  manager:string;
+  birthdate:string;
+  ssnumber:string;
   sectors:Array<Sector>;
-  baths:Array<Bath>;
-  plannings:Array<Planning>;
+  //baths:Array<Bath>;
+  //plannings:Array<Planning>;
+  constructor(){}
 }

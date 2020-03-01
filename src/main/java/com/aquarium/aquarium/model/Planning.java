@@ -18,16 +18,16 @@ public class Planning {
     private long hour;
     private long minutes;
     private Day day;
-    private boolean isPublic;
+    private boolean ispublic;
 
-    @ManyToOne(
-            cascade = CascadeType.MERGE)
-    @JsonIgnoreProperties({"plannings","resp"})
+    @ManyToOne//(
+            //cascade = CascadeType.MERGE)
+    @JsonIgnoreProperties(value={"plannings","resp"})
     private Bath bath;
 
     @ManyToMany(
             cascade = CascadeType.MERGE)
-    @JsonIgnoreProperties({"plannings","sectors","baths"})
+    @JsonIgnoreProperties(value={"plannings","sectors.baths"})
     private Set<Employee> employees;
 
     public enum Day{
@@ -43,12 +43,12 @@ public class Planning {
 
     Planning(){}
 
-    public Planning(String name, long hour, long minutes, Day day, boolean isPublic, Set<Employee> employees, Bath bath) {
+    public Planning(String name, long hour, long minutes, Day day, boolean ispublic, Set<Employee> employees, Bath bath) {
         this.name = name;
         this.hour=hour;
         this.minutes=minutes;
         this.day=day;
-        this.isPublic=isPublic;
+        this.ispublic=ispublic;
         this.employees=employees;
         this.bath=bath;
     }
@@ -85,12 +85,12 @@ public class Planning {
         this.day = day;
     }
 
-    public boolean isPublic() {
-        return isPublic;
+    public boolean isIspublic() {
+        return ispublic;
     }
 
-    public void setPublic(boolean aPublic) {
-        isPublic = aPublic;
+    public void setIspublic(boolean ispublic) {
+        this.ispublic = ispublic;
     }
 
     public Set<Employee> getEmployees() {
@@ -112,4 +112,6 @@ public class Planning {
     public Long getId() {
         return id;
     }
+
+    public void setId(Long id){this.id=id;}
 }

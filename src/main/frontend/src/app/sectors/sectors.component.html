@@ -2,17 +2,13 @@
   <table class="table table-hover">
   <thead>
   <tr>
-    <th>Id</th>
     <th>Name</th>
-    <th>Localisation</th>
     <th>Action</th>
   </tr>
   </thead>
   <tbody>
   <tr *ngFor="let sector of sectors | async" (click)="select(sector)">
-    <td>{{sector.id}}</td>
     <td>{{sector.name}}</td>
-    <td>{{sector.localisation}}</td>
     <td><button class="btn btn-primary" (click)="select(sector)"> Show details</button></td>
   </tr>
   </tbody>
@@ -25,6 +21,10 @@
       <p class="card-text">
         Name: {{selected.name}}<BR>
         Localisation: {{selected.localisation}}<BR>
+      </p>
+      <b>Baths</b>
+      <p *ngFor="let bath of selected.baths" class="card-text">
+        Name: {{bath.name}}<BR>
       </p>
     </div>
   </div>

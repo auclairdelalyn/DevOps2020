@@ -1,13 +1,14 @@
 import {Bath} from './Bath';
 import {Employee} from './Employee';
 
-export interface Planning{
+export class Planning{
   id:number;
   name:string;
   hour:number;
   minutes:number;
   day:string;
-  isPublic:string;
+  ispublic:boolean;
   bath:Bath;
   employees:Array<Employee>;
+  constructor(){}
 }

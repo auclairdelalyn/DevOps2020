@@ -15,6 +15,9 @@ export class PlanningsService {
   deletePlanning(id: number): Observable<any> {
       return this.httpClient.delete(`${this.baseUrl}/${id}`, { responseType: 'text' });
   }
+  createPlanning(planning:Planning): Observable<EntityResponseType> {
+      return this.httpClient.post<Planning>(`${this.baseUrl}`, planning, { observe: 'response' });
+  }
   /*getPlanning(id: number) : Observable<Planning> {
     return this.httpClient.get<Planning>('/plannings/' + id);
   }

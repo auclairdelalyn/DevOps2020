@@ -15,6 +15,10 @@ export class AnimalsService {
   deleteAnimal(id: number): Observable<any> {
       return this.httpClient.delete(`${this.baseUrl}/${id}`, { responseType: 'text' });
   }
+
+  createAnimal(animal:Animal): Observable<EntityResponseType> {
+      return this.httpClient.post<Animal>(`${this.baseUrl}`, animal, { observe: 'response' });
+  }
   /*getAnimals(id: number) : Observable<Animals> {
     return this.httpClient.get<Animals>('/animals/' + id);
   }

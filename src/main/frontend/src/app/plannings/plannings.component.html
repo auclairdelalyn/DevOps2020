@@ -2,22 +2,16 @@
   <table class="table table-hover">
   <thead>
   <tr>
-    <th>Id</th>
     <th>Name</th>
-    <th>Time</th>
-    <th>Day</th>
-    <th>Public</th>
     <th>Action</th>
   </tr>
   </thead>
   <tbody>
   <tr *ngFor="let planning of plannings | async" (click)="select(planning)">
-    <td>{{planning.id}}</td>
     <td>{{planning.name}}</td>
-    <td>{{planning.hour}}:{{planning.minutes}}</td>
-    <td>{{planning.day}}</td>
-    <td>{{planning.public}}</td>
     <td><button class="btn btn-primary" (click)="select(planning)"> Show details</button></td>
+    <td><button class="btn btn-primary" (click)="edit(planning)"> Edit</button></td>
+    <td><button class="btn btn-primary" (click)="deletePlanning(planning.id)"> Delete</button></td>
   </tr>
   </tbody>
 </table>
@@ -27,13 +21,97 @@
   </div>
   <div class="card-block">
     <p class="card-text">
-      Hour: {{selected.hour}}:{{selected.minutes}}<BR>
+      Hour: {{selected.hour}}h{{selected.minutes}}<BR>
       Day: {{selected.day}}<BR>
-      Is Public: {{selected.public}}<BR>
+      Is Public: {{selected.ispublic}}<BR>
       Bath: {{selected.bath.name}}<BR>
+    </p>
+    <b>Employees</b>
+    <p *ngFor="let employee of selected.employees" class="card-text">
+      Full Name: {{employee.firstname}} {{employee.lastname}}<BR>
     </p>
   </div>
 </div>
 </div>
+
+<div class="container" style="margin-top: 70px;">
+  <div class="row">
+    <div class="col-sm-8 offset-sm-2">
+      <div>
+        <td><button class="btn btn-primary" (click)="reset()"> Reset</button></td>
+        <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input [(ngModel)]="planning.name" type="text" name="name" class="form-control" id="name">
+
+            <label for="hour">hour</label>
+            <select [(ngModel)]="planning.hour" type="number" name="hour" class="form-control" id="hour">
+              <option value="00">0</option>
+              <option value="01">1</option>
+              <option value="02">2</option>
+              <option value="03">3</option>
+              <option value="04">4</option>
+              <option value="05">5</option>
+              <option value="06">6</option>
+              <option value="07">7</option>
+              <option value="08">8</option>
+              <option value="09">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+              <option value="13">13</option>
+              <option value="14">14</option>
+              <option value="15">15</option>
+              <option value="16">16</option>
+              <option value="17">17</option>
+              <option value="18">18</option>
+              <option value="19">19</option>
+              <option value="20">20</option>
+              <option value="21">21</option>
+              <option value="22">22</option>
+              <option value="23">23</option>
+            </select>
+
+            <label for="minutes">minutes</label>
+            <select [(ngModel)]="planning.minutes" type="number" name="minutes" class="form-control" id="minutes">
+              <option value="00">00</option>
+              <option value="30">30</option>
+            </select>
+
+            <label for="day">day</label>
+            <select [(ngModel)]="planning.day" type="text" name="day" class="form-control" id="day">
+              <option value="monday">Monday</option>
+              <option value="tuesday">Tuesday</option>
+              <option value="wednesday">Wednesday</option>
+              <option value="thursday">Thursday</option>
+              <option value="friday">Friday</option>
+              <option value="saturday">Saturday</option>
+              <option value="sunday">Sunday</option>
+              <option value="everyday">Everyday</option>
+            </select>
+
+            <label for="ispublic">public</label>
+            <select [(ngModel)]="planning.ispublic" type="text" name="ispublic" class="form-control" id="ispublic">
+              <option value="true">Public</option>
+              <option value="false">Private</option>
+            </select>
+
+            <label for="bath">bath</label>
+            <select [(ngModel)]="planning.bath" (ngModelChange)="onBathChange($event)" name="bath" class="form-control" id="bath">
+              <option *ngFor="let bath of baths | async" [ngValue]="bath">{{bath.name}} (Sector:{{bath.sector.id}})</option>
+            </select>
+
+            <label for="employees">employees</label>
+            <select [(ngModel)]="planning.employees" name="employees" class="form-control" id="employees" multiple>
+              <option *ngFor="let employee of employees | async" [ngValue]="employee">{{employee.firstname}} {{employee.lastname}}</option>
+            </select>
+            <button type="submit" class="btn btn-info">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 <router-outlet></router-outlet>
 

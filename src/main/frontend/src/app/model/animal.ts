@@ -1,7 +1,7 @@
 import {Species} from './Species';
 import {Bath} from './Bath';
 
-export interface Animal{
+export class Animal{
       id:number;
       name:string;
       sex:string;
@@ -10,4 +10,5 @@ export interface Animal{
       departure:string;
       species:Species;
       bath:Bath;
+        constructor(){}
 }

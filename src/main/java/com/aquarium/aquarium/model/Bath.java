@@ -22,29 +22,29 @@ public class Bath {
 
     @ManyToOne(
             cascade={CascadeType.MERGE})
-    @JsonIgnoreProperties({"persons","baths"})
+    @JsonIgnoreProperties(value={"persons","baths"})
     private Sector sector;
 
     @OneToMany(mappedBy = "bath",
             fetch=FetchType.LAZY,
             cascade = CascadeType.MERGE)
-    @JsonIgnoreProperties({"bath","species"})
+    @JsonIgnoreProperties(value={"bath","species.animals"})
     private Set<Animal> animals;
 
-    @OneToMany(mappedBy = "bath",
+    /*@OneToMany(mappedBy = "bath",
             fetch=FetchType.LAZY,
             cascade = CascadeType.MERGE)
-    @JsonIgnoreProperties("bath")
-    private Set<Planning> plannings;
+    @JsonIgnoreProperties(value={"bath"})
+    private Set<Planning> plannings;*/
 
     /*@ManyToMany(
             cascade = CascadeType.MERGE)
     @JsonIgnoreProperties("bath")
     private Set<Species> species;*/
 
-    @ManyToOne(//fetch=FetchType.LAZY,
-            cascade= {CascadeType.MERGE})
-    @JsonIgnoreProperties({"baths","plannings"})
+    @ManyToOne(cascade={CascadeType.MERGE})//(
+            //cascade= {CascadeType.MERGE})
+    @JsonIgnoreProperties(value={"plannings,sectors"})
     private Employee resp;
 
     public enum State{
@@ -63,7 +63,7 @@ public class Bath {
         //this.species=new HashSet<Species>();
         this.animals=new HashSet<Animal>();
         this.resp=resp;
-        this.plannings=new HashSet<Planning>();
+        //this.plannings=new HashSet<Planning>();
         //this.species=species;
     }
 
@@ -154,17 +154,19 @@ public class Bath {
         this.species = species;
     }*/
 
-    public Set<Planning> getPlannings() {
+    /*public Set<Planning> getPlannings() {
         return plannings;
     }
 
     public void setPlannings(Set<Planning> plannings) {
         this.plannings = plannings;
-    }
+    }*/
 
     public Long getId() {
         return id;
     }
+
+    public void setId(Long id){this.id=id;}
 
     @JsonProperty("sector_id")
     private void unpackNested(Long sector_id) {

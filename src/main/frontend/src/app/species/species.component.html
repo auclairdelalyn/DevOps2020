@@ -2,20 +2,13 @@
   <table class="table table-hover">
   <thead>
   <tr>
-    <th>Id</th>
     <th>Name</th>
-    <th>Esperance</th>
-    <th>Regime</th>
-    <th>Endangered</th>
+    <th>Action</th>
   </tr>
   </thead>
   <tbody>
   <tr *ngFor="let specie of species | async" (click)="select(specie)">
-    <td>{{specie.id}}</td>
     <td>{{specie.name}}</td>
-    <td>{{specie.esperance}}</td>
-    <td>{{specie.regime}}</td>
-    <td>{{specie.endangered}}</td>
     <td><button class="btn btn-primary" (click)="select(specie)"> Show details</button></td>
   </tr>
   </tbody>
@@ -29,7 +22,16 @@
         Name: {{selected.name}}<BR>
         Life Expectancy: {{selected.esperance}}<BR>
         Regime: {{selected.regime}}<BR>
-        Endangered (0 to 10 (almost extinct): {{selected.endangered}}<BR>
+        Endangered (0: safe to 10: extinct): {{selected.endangered}}<BR>
+        Number in aquarium: {{selected.animals.length}}<BR>
+      </p>
+      <b>Animals</b>
+      <p *ngFor="let animal of selected.animals" class="card-text">
+        Name: {{animal.name}}<BR>
+        Sex: {{animal.sex}}<BR>
+        Bath: {{animal.bath.name}}<BR>
+        Sector: {{animal.bath.sector.name}}<BR>
+        <BR>
       </p>
     </div>
   </div>

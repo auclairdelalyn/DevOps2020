@@ -1,5 +1,6 @@
 package com.aquarium.aquarium.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -17,39 +18,37 @@ public class Employee {
     private String lastname;
     private String firstname;
     private String address;
-    private Date birthDate;
-    private String ssNumber;
-    private boolean manager;
+    private String birthdate;
+    private String ssnumber;
 
     @ManyToMany(
             cascade = CascadeType.MERGE)
-    @JsonIgnoreProperties({"persons","baths"})
+    @JsonIgnoreProperties(value={"persons","baths"})
     private Set<Sector> sectors;
 
-    @OneToMany(mappedBy = "resp",
-            fetch=FetchType.LAZY,
+    /*@OneToMany(mappedBy = "resp",
+            //fetch=FetchType.LAZY,
             cascade = CascadeType.MERGE)
-    @JsonIgnoreProperties({"resp","sector","plannings","animals"})
-    private Set<Bath> baths;
+    @JsonIgnoreProperties({"resp.sectors.employees", "resp.plannings.employees","sector.employees","sector.baths","plannings.employees","animals"})
+    private Set<Bath> baths;*/
 
-    @ManyToMany(mappedBy = "employees",
+    /*@ManyToMany(mappedBy = "employees",
             fetch=FetchType.LAZY,
             cascade = CascadeType.MERGE)
-    @JsonIgnoreProperties({"employees","bath"})
-    private Set<Planning> plannings;
+    @JsonIgnoreProperties(value={"employees","bath.sector","bath.resp"})
+    private Set<Planning> plannings;*/
 
     Employee(){}
 
-    public Employee(String lastname, String firstname, String address, Date birthDate, String ssNumber, boolean manager, Set<Sector>sectors) {
+    public Employee(String lastname, String firstname, String address, String birthdate, String ssnumber, Set<Sector>sectors) {
         this.lastname = lastname;
         this.firstname = firstname;
         this.address = address;
-        this.birthDate = birthDate;
-        this.ssNumber = ssNumber;
-        this.manager=manager;
+        this.birthdate = birthdate;
+        this.ssnumber = ssnumber;
         this.sectors=sectors;
-        this.baths=new HashSet<Bath>();
-        this.plannings=new HashSet<Planning>();
+        //this.baths=new HashSet<Bath>();
+        //this.plannings=new HashSet<Planning>();
     }
 
     /*public Employee(String lastname, String firstname, String address, Date birthDate, String ssNumber, boolean manager, HashSet<Sector> sectors) {
@@ -87,37 +86,29 @@ public class Employee {
         this.address = address;
     }
 
-    public Date getBirthDate() {
-        return birthDate;
+    public String getBirthdate() {
+        return birthdate;
     }
 
-    public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
+    public void setBirthdate(String birthdate) {
+        this.birthdate = birthdate;
     }
 
-    public String getSsNumber() {
-        return ssNumber;
+    public String getSsnumber() {
+        return ssnumber;
     }
 
-    public void setSsNumber(String ssNumber) {
-        this.ssNumber = ssNumber;
+    public void setSsnumber(String ssnumber) {
+        this.ssnumber = ssnumber;
     }
 
-    public boolean isManager() {
-        return manager;
-    }
-
-    public void setManager(boolean manager) {
-        this.manager = manager;
-    }
-
-    public Set<Bath> getBaths() {
+    /*public Set<Bath> getBaths() {
         return baths;
     }
 
     public void setBaths(Set<Bath> baths) {
         this.baths = baths;
-    }
+    }*/
 
     public Set<Sector> getSectors() {
         return sectors;
@@ -127,15 +118,17 @@ public class Employee {
         this.sectors = sectors;
     }
 
-    public Set<Planning> getPlannings() {
+    /*public Set<Planning> getPlannings() {
         return plannings;
     }
 
     public void setPlannings(Set<Planning> plannings) {
         this.plannings = plannings;
-    }
+    }*/
 
     public Long getId() {
         return id;
     }
+
+    public void setId(Long id){this.id=id;}
 }

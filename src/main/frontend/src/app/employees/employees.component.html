@@ -2,26 +2,17 @@
   <table class="table table-hover">
   <thead>
   <tr>
-    <th>Id</th>
     <th>FirstName</th>
     <th>LastName</th>
-    <th>Address</th>
-    <th>BirthDate</th>
-    <th>Social Security</th>
-    <th>Manager</th>
     <th>Action</th>
   </tr>
   </thead>
   <tbody>
   <tr *ngFor="let employee of employees | async" (click)="select(employee)">
-    <td>{{employee.id}}</td>
     <td>{{employee.firstname}}</td>
     <td>{{employee.lastname}}</td>
-    <td>{{employee.address}}</td>
-    <td>{{employee.birthDate}}</td>
-    <td>{{employee.ssNumber}}</td>
-    <td>{{employee.manager}}</td>
     <td><button class="btn btn-primary" (click)="select(employee)"> Show details</button></td>
+    <td><button class="btn btn-primary" (click)="edit(employee)"> Edit</button></td>
   </tr>
   </tbody>
   </table>
@@ -33,11 +24,50 @@
       <p class="card-text">
         Full Name: {{selected.firstname}} {{selected.lastname}}<BR>
         Address: {{selected.address}}<BR>
-        Birth Date: {{selected.birthDate}}<BR>
-        Social Security: {{selected.ssNumber}}<BR>
-        Is Manager: {{selected.manager}}<BR>
+        Birth Date: {{selected.birthdate}}<BR>
+        Social Security: {{selected.ssnumber}}<BR>
+      </p>
+      <b>Sectors</b>
+      <p *ngFor="let sector of selected.sectors" class="card-text">
+        Name: {{sector.name}}<BR>
       </p>
     </div>
   </div>
 </div>
+
+<div class="container" style="margin-top: 70px;">
+  <div class="row">
+    <div class="col-sm-8 offset-sm-2">
+      <div>
+        <td><button class="btn btn-primary" (click)="reset()"> Reset</button></td>
+        <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+          <div class="form-group">
+            <label for="firstname">First Name</label>
+            <input [(ngModel)]="employee.firstname" type="text" name="firstname" class="form-control" id="firstname">
+
+            <label for="lastname">Last Name</label>
+            <input [(ngModel)]="employee.lastname" type="text" name="lastname" class="form-control" id="lastname">
+
+            <label for="address">Address</label>
+            <input [(ngModel)]="employee.address" type="text" name="address" class="form-control" id="address">
+
+            <label for="social">Social Security</label>
+            <input [(ngModel)]="employee.ssnumber" type="text" name="social" class="form-control" id="social">
+
+            <label for="birthdate">Birth Date</label>
+            <input [(ngModel)]="employee.birthdate" type="text" name="birthdate" class="form-control" id="birthdate">
+
+            <label for="sectors">sectors</label>
+            <select [(ngModel)]="employee.sectors" name="sectors" class="form-control" id="sectors" multiple>
+              <option *ngFor="let sector of sectors | async" [ngValue]="sector">{{sector.name}}</option>
+            </select>
+
+            <button type="submit" class="btn btn-info">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 <router-outlet></router-outlet>

@@ -1,8 +1,13 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {EmployeesService} from "./employees.service";
 import {Employee} from "../model/employee";
+import {SectorsService} from "../sectors/sectors.service";
+import {Sector} from "../model/sector";
+import {BathsService} from "../baths/baths.service";
+import {Bath} from "../model/bath";
 import {Observable} from "rxjs";
-import { RouterModule, Routes } from '@angular/router';
+import { filter, map } from 'rxjs/operators';
+import { RouterModule, Routes, Router } from '@angular/router';
 import { HttpClientModule } from "@angular/common/http";
 
 @Component({
@@ -13,14 +18,21 @@ import { HttpClientModule } from "@angular/common/http";
 export class EmployeesComponent implements OnInit {
   employees: Observable<Employee[]>;
   selected: Employee;
+
+  employee:Employee;
+
+  sectors: Observable<Sector[]>;
     select(element){
           this.selected = element;
         }
 
-    constructor(private employeesService: EmployeesService) {}
+    constructor(private employeesService: EmployeesService, private sectorsService:SectorsService, private bathsService: BathsService, private router:Router) {
+        this.employee=new Employee();
+    }
 
     ngOnInit() {
       this.reloadData();
+      this.sectors=this.sectorsService.getAll();
     }
 
     reloadData() {
@@ -35,4 +47,19 @@ export class EmployeesComponent implements OnInit {
           },
           error => console.log(error));
     }
+
+    onSubmit() {
+                //this.employee.baths=this.baths;
+                console.log(this.employee);
+                this.employeesService.createEmployee(this.employee).subscribe(result => this.router.navigate(['']));
+    }
+
+    reset(){
+                this.employee=new Employee();
+        }
+
+        edit(empl){
+                this.employee=empl;
+
+        }
 }

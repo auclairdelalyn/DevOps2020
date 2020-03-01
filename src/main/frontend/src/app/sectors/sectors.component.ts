@@ -2,6 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {SectorsService} from "./sectors.service";
 import {Sector} from "../model/sector";
 import {Observable} from "rxjs";
+import { filter, map } from 'rxjs/operators';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from "@angular/common/http";
 

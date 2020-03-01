@@ -15,6 +15,10 @@ export class EmployeesService {
   deleteEmployee(id: number): Observable<any> {
       return this.httpClient.delete(`${this.baseUrl}/${id}`, { responseType: 'text' });
   }
+
+  createEmployee(employee:Employee): Observable<EntityResponseType> {
+      return this.httpClient.post<Employee>(`${this.baseUrl}`, employee, { observe: 'response' });
+  }
   /*getEmployee(id: number) : Observable<Employee> {
     return this.httpClient.get<Employee>('/employees/' + id);
   }

@@ -3,14 +3,15 @@ import {Animal} from './Animal';
 import {Employee} from './Employee';
 import {Planning} from './Planning';
 
-export interface Bath{
+export class Bath{
   id:number;
   name:string;
   capacity:number;
   volume:number;
-  state:number;
+  state:string;
   sector:Sector;
   animals:Array<Animal>;
-  planning:Array<Planning>;
+  //plannings:Array<Planning>;
   resp:Employee;
+    constructor(){}
 }

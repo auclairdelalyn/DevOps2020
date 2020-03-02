@@ -12,6 +12,7 @@ import { PlanningsComponent } from './plannings/plannings.component';
 import { SectorsComponent } from './sectors/sectors.component';
 import { FormsModule } from '@angular/forms';
 import { SpeciesComponent } from './species/species.component';
+import { ConnexionComponent } from './connexion/connexion.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { SpeciesComponent } from './species/species.component';
     EmployeesComponent,
     PlanningsComponent,
     SectorsComponent,
-    SpeciesComponent
+    SpeciesComponent,
+    ConnexionComponent
   ],
   imports: [
     BrowserModule,

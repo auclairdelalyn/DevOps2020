@@ -20,6 +20,9 @@ public class Employee {
     private String address;
     private String birthdate;
     private String ssnumber;
+    private String login;
+    private String password;
+    private boolean manager;
 
     @ManyToMany(
             cascade = CascadeType.MERGE)
@@ -40,13 +43,16 @@ public class Employee {
 
     Employee(){}
 
-    public Employee(String lastname, String firstname, String address, String birthdate, String ssnumber, Set<Sector>sectors) {
+    public Employee(String lastname, String firstname, String address, String birthdate, String ssnumber, Set<Sector>sectors, String login, String password, boolean manager) {
         this.lastname = lastname;
         this.firstname = firstname;
         this.address = address;
         this.birthdate = birthdate;
         this.ssnumber = ssnumber;
         this.sectors=sectors;
+        this.login=login;
+        this.password=password;
+        this.manager=manager;
         //this.baths=new HashSet<Bath>();
         //this.plannings=new HashSet<Planning>();
     }
@@ -125,6 +131,30 @@ public class Employee {
     public void setPlannings(Set<Planning> plannings) {
         this.plannings = plannings;
     }*/
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public boolean isManager() {
+        return manager;
+    }
+
+    public void setManager(boolean manager) {
+        this.manager = manager;
+    }
 
     public Long getId() {
         return id;

@@ -23,7 +23,14 @@ public class EmployeeRessource {
 
     @PostMapping("/employees")
     public Employee postEmployee(@RequestBody Employee employee){
-        employeeService.createEmployee(employee);
+        boolean fail=false;
+        for(Employee e: getEmployee()){
+            if(e.getId()!=employee.getId() && e.getLogin().equals(employee.getLogin()))
+                fail=true;
+        }
+        if(!fail){
+            employeeService.createEmployee(employee);
+        }
         return employee;
     }
 

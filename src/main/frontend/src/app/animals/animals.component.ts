@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnInit, Input, Output} from '@angular/core';
 import {AnimalsService} from "./animals.service";
 import {Animal} from "../model/animal";
 import {BathsService} from "../baths/baths.service";
@@ -16,6 +16,10 @@ import { HttpClientModule } from "@angular/common/http";
   styleUrls: ['./animals.component.css']
 })
 export class AnimalsComponent implements OnInit {
+  @Input() key:string;
+  @Output() setKey = new EventEmitter<string>();
+  @Input() manager:boolean;
+  @Input() id:number;
   animals: Observable<Animal[]>;
   selected: Animal;
 
@@ -66,7 +70,7 @@ export class AnimalsComponent implements OnInit {
             this.selected.departure=today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
             //this.selected.bath=null;
         }
-        this.animalsService.createAnimal(this.selected).subscribe(result => this.router.navigate(['']));
+        this.animalsService.createAnimal(this.selected).subscribe(result => this.setKey.emit(this.key));
     }
 
     reset(){

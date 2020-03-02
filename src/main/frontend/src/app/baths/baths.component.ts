@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnInit, Input, Output} from '@angular/core';
 import {BathsService} from "./baths.service";
 import {Bath} from "../model/bath";
 import {SectorsService} from "../sectors/sectors.service";
@@ -16,6 +16,10 @@ import { HttpClientModule } from "@angular/common/http";
   styleUrls: ['./baths.component.css']
 })
 export class BathsComponent implements OnInit{
+  @Input() key:string;
+  @Output() setKey = new EventEmitter<string>();
+  @Input() manager:boolean;
+  @Input() id:number;
   baths: Observable<Bath[]>;
   selected: Bath;
 
@@ -52,7 +56,7 @@ export class BathsComponent implements OnInit{
 
         onSubmit() {
 
-                this.bathsService.createBath(this.bath).subscribe(result => this.router.navigate(['']));
+                this.bathsService.createBath(this.bath).subscribe(result => this.setKey.emit(this.key));
         }
 
         reset(){

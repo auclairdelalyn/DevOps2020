@@ -6,7 +6,9 @@ import com.aquarium.aquarium.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.Ordered;
@@ -17,6 +19,7 @@ import org.springframework.web.filter.CorsFilter;
 import java.util.*;
 
 @SpringBootApplication
+@EnableAutoConfiguration(exclude = {ErrorMvcAutoConfiguration.class})
 public class AquariumApplication implements CommandLineRunner {
 	@Autowired
 	private SectorService sectorService;
@@ -43,9 +46,9 @@ public class AquariumApplication implements CommandLineRunner {
 		Sector s1=sectorService.createSector(new Sector("PLOP2", "aaaaaaaaaaa"));
 		ss.add(s);
 		ss2.add(s1);
-		Employee e=employeeService.createEmployee(new Employee("aaaa","bbbb", "sdfdf", "13-11-1991", "ss",ss));
-		Employee e1=employeeService.createEmployee(new Employee("aaaa2","bbbb", "sdfdf", "05-12-1956", "ss",ss));
-		Employee e2=employeeService.createEmployee(new Employee("aaaa2","bbbb", "sdfdf", "24-05-1941", "ss",ss2));
+		Employee e=employeeService.createEmployee(new Employee("aaaa","bbbb", "sdfdf", "13-11-1991", "ss",ss, "test", "test", true));
+		Employee e1=employeeService.createEmployee(new Employee("aaaa2","bbbb", "sdfdf", "05-12-1956", "ss",ss, "test1", "test1", false));
+		Employee e2=employeeService.createEmployee(new Employee("aaaa2","bbbb", "sdfdf", "24-05-1941", "ss",ss2, "test2", "test2", false));
 		Species sp=speciesService.createSpecies(new Species("homo sapiens", 75L, Species.Regime.Piscivore, 2));
 		Set<Species>spe=new HashSet<Species>();
 		spe.add(sp);

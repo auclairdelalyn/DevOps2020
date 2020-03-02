@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnInit, Input, Output} from '@angular/core';
 import {EmployeesService} from "./employees.service";
 import {Employee} from "../model/employee";
 import {SectorsService} from "../sectors/sectors.service";
@@ -16,6 +16,10 @@ import { HttpClientModule } from "@angular/common/http";
   styleUrls: ['./employees.component.css']
 })
 export class EmployeesComponent implements OnInit {
+  @Input() key:string;
+  @Output() setKey = new EventEmitter<string>();
+  @Input() manager:boolean;
+  @Input() id:number;
   employees: Observable<Employee[]>;
   selected: Employee;
 
@@ -51,7 +55,7 @@ export class EmployeesComponent implements OnInit {
     onSubmit() {
                 //this.employee.baths=this.baths;
                 console.log(this.employee);
-                this.employeesService.createEmployee(this.employee).subscribe(result => this.router.navigate(['']));
+                this.employeesService.createEmployee(this.employee).subscribe(result => this.setKey.emit(this.key));
     }
 
     reset(){

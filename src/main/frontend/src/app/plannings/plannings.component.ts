@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnInit, Input, Output} from '@angular/core';
 import {PlanningsService} from "./plannings.service";
 import {Planning} from "../model/planning";
 import {BathsService} from "../baths/baths.service";
@@ -16,6 +16,10 @@ import { HttpClientModule } from "@angular/common/http";
   styleUrls: ['./plannings.component.css']
 })
 export class PlanningsComponent implements OnInit {
+  @Input() key:string;
+  @Output() setKey = new EventEmitter<string>();
+  @Input() manager:boolean;
+  @Input() id:number;
   plannings: Observable<Planning[]>;
   selected: Planning;
 
@@ -36,13 +40,14 @@ export class PlanningsComponent implements OnInit {
     }
 
     ngOnInit() {
+      console.log(this.key);
       this.reloadData();
       this.baths=this.bathsService.getAll();
       this.employees = this.employeesService.getAll();
     }
 
     reloadData() {
-      this.plannings = this.planningsService.getAll().pipe(map(planning=>planning.filter(plan=>plan.ispublic)));
+      this.plannings = this.planningsService.getAll();
     }
 
     deletePlanning(id:number) {
@@ -57,7 +62,7 @@ export class PlanningsComponent implements OnInit {
 
     onSubmit() {
         console.log(this.planning);
-        this.planningsService.createPlanning(this.planning).subscribe(result => this.router.navigate(['']));
+        this.planningsService.createPlanning(this.planning).subscribe(result => this.setKey.emit(this.key));
     }
 
     onBathChange(event){

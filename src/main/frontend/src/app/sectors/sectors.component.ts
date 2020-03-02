@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnInit, Input, Output} from '@angular/core';
 import {SectorsService} from "./sectors.service";
 import {Sector} from "../model/sector";
 import {Observable} from "rxjs";
@@ -12,6 +12,10 @@ import { HttpClientModule } from "@angular/common/http";
   styleUrls: ['./sectors.component.css']
 })
 export class SectorsComponent implements OnInit {
+  @Input() key:string;
+  @Output() setKey = new EventEmitter<string>();
+  @Input() manager:boolean;
+  @Input() id:number;
   sectors: Observable<Sector[]>;
   selected: Sector;
     select(element){

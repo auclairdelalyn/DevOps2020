@@ -8,10 +8,10 @@
   </thead>
   <tbody>
   <tr *ngFor="let planning of plannings | async" (click)="select(planning)">
-    <td>{{planning.name}}</td>
-    <td><button class="btn btn-primary" (click)="select(planning)"> Show details</button></td>
-    <td><button class="btn btn-primary" (click)="edit(planning)"> Edit</button></td>
-    <td><button class="btn btn-primary" (click)="deletePlanning(planning.id)"> Delete</button></td>
+    <td *ngIf="(key!=null && planning.ispublic==false) || planning.ispublic==true">{{planning.name}}</td>
+    <td *ngIf="(key!=null && planning.ispublic==false) || planning.ispublic==true"><button class="btn btn-primary" (click)="select(planning)"> Show details</button></td>
+    <td *ngIf="key!=null"><button class="btn btn-primary" (click)="edit(planning)"> Edit</button></td>
+    <td *ngIf="key!=null"><button class="btn btn-primary" (click)="deletePlanning(planning.id)"> Delete</button></td>
   </tr>
   </tbody>
 </table>
@@ -26,15 +26,17 @@
       Is Public: {{selected.ispublic}}<BR>
       Bath: {{selected.bath.name}}<BR>
     </p>
+    <div *ngIf="key!=null">
     <b>Employees</b>
     <p *ngFor="let employee of selected.employees" class="card-text">
       Full Name: {{employee.firstname}} {{employee.lastname}}<BR>
     </p>
+    </div>
   </div>
 </div>
 </div>
 
-<div class="container" style="margin-top: 70px;">
+<div *ngIf="key!=null" class="container" style="margin-top: 70px;">
   <div class="row">
     <div class="col-sm-8 offset-sm-2">
       <div>

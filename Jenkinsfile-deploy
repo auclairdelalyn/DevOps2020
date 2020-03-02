@@ -1,31 +1,33 @@
+
 pipeline {
     agent any
+
     stages {
-        stage('Clean') {
+        stage ('Compile Stage') {
+
             steps {
-                bat 'mvn clean package'
-            }
-        }
-        stage('shutdown current app') {
-            steps{
-                script{
-                    try{
-                        bat "curl -X POST http://localhost:8080/actuator/shutdown"
-                    }catch(Exception e){
-                        //nothong
-                    }
+                withMaven(maven : 'maven_3_6_3') {
+                    bat 'mvn clean compile'
                 }
             }
         }
-        stage('Build') {
-             steps {
-                bat "mvn compile"
+
+        stage ('Testing Stage') {
+
+            steps {
+                withMaven(maven : 'maven_3_6_3') {
+                    bat 'mvn test'
+                }
             }
         }
-        stage('Test') {
-             steps {
-                bat "mvn test"
-             }
+
+
+        stage ('Deployment Stage') {
+            steps {
+                withMaven(maven : 'maven_3_6_3') {
+                    bat 'mvn deploy'
+                }
+            }
         }
     }
 }

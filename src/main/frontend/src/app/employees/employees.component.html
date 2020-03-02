@@ -73,7 +73,7 @@
             <select [(ngModel)]="employee.sectors" name="sectors" class="form-control" id="sectors" multiple>
               <option *ngFor="let sector of sectors | async" [ngValue]="sector">{{sector.name}}</option>
             </select>
-
+            <BR>
             <button type="submit" class="btn btn-info">Submit</button>
           </div>
         </form>

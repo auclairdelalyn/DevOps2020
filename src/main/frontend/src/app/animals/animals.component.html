@@ -65,6 +65,7 @@
             <select [(ngModel)]="animal.bath" name="bath" class="form-control" id="bath">
               <option *ngFor="let bath of baths | async" [ngValue]="bath">{{bath.name}} (Sector:{{bath.sector.id}})</option>
             </select>
+            <BR>
             <button type="submit" class="btn btn-info">Submit</button>
           </div>
         </form>

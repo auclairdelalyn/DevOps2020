@@ -68,6 +68,7 @@
             <select [(ngModel)]="bath.resp" name="resp" class="form-control" id="resp">
               <option *ngFor="let employee of employees | async" [ngValue]="employee">{{employee.firstname}} {{employee.lastname}}</option>
             </select>
+            <BR>
             <button type="submit" class="btn btn-info">Submit</button>
           </div>
         </form>

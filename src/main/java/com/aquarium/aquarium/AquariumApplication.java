@@ -19,7 +19,6 @@ import org.springframework.web.filter.CorsFilter;
 import java.util.*;
 
 @SpringBootApplication
-@EnableAutoConfiguration(exclude = {ErrorMvcAutoConfiguration.class})
 public class AquariumApplication implements CommandLineRunner {
 	@Autowired
 	private SectorService sectorService;

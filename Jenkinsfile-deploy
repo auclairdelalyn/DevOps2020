@@ -17,11 +17,6 @@ pipeline {
                 }
             }
         }
-        stage('copy app'){
-            steps{
-                bat "copy target/aquarium-0.0.1-SNAPSHOT.jar ./"
-            }
-        }
         stage('Build') {
              steps {
                 bat "mvn compile"

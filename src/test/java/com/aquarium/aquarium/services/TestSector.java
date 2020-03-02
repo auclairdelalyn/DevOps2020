@@ -42,4 +42,13 @@ public class TestSector {
                 List.class);
         assertEquals(3, sectors.size());
     }
+
+    @Test
+    public void create() {
+        Sector s=new Sector("test1", "test1");
+        Mockito.when(sectorService.createSector(s)).thenReturn(s);
+        Sector sector = this.restTemplate.postForObject("http://localhost:" + port + "/sectors",s,
+                Sector.class);
+        assertEquals(sector.getId(), sector.getId());
+    }
 }

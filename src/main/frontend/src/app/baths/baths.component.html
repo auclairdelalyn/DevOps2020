@@ -10,7 +10,7 @@
   <tr *ngFor="let bath of baths | async" (click)="select(bath)">
     <td>{{bath.name}}</td>
     <td><button class="btn btn-primary" (click)="select(bath)"> Show details</button></td>
-    <td *ngIf="key!=null && manager==true"><button class="btn btn-primary" (click)="edit(bath)"> Edit</button></td>
+    <td *ngIf="key!=null && manager"><button class="btn btn-primary" (click)="edit(bath)"> Edit</button></td>
   </tr>
   </tbody>
 </table>

@@ -12,7 +12,7 @@
     <td>{{employee.firstname}}</td>
     <td>{{employee.lastname}}</td>
     <td><button class="btn btn-primary" (click)="select(employee)"> Show details</button></td>
-    <td *ngIf="manager==true"><button class="btn btn-primary" (click)="edit(employee)"> Edit</button></td>
+    <td *ngIf="manager"><button class="btn btn-primary" (click)="edit(employee)"> Edit</button></td>
   </tr>
   </tbody>
   </table>

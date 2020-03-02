@@ -7,7 +7,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let planning of plannings | async" (click)="select(planning)">
+  <tr *ngFor="let planning of getPlannings() | async" (click)="select(planning)">
     <td *ngIf="(key!=null && planning.ispublic==false) || planning.ispublic==true">{{planning.name}}</td>
     <td *ngIf="(key!=null && planning.ispublic==false) || planning.ispublic==true"><button class="btn btn-primary" (click)="select(planning)"> Show details</button></td>
     <td *ngIf="key!=null"><button class="btn btn-primary" (click)="edit(planning)"> Edit</button></td>
@@ -100,7 +100,7 @@
 
             <label for="bath">bath</label>
             <select [(ngModel)]="planning.bath" (ngModelChange)="onBathChange($event)" name="bath" class="form-control" id="bath">
-              <option *ngFor="let bath of baths | async" [ngValue]="bath">{{bath.name}} (Sector:{{bath.sector.id}})</option>
+              <option *ngFor="let bath of getBaths() | async" [ngValue]="bath">{{bath.name}} (Sector:{{bath.sector.id}})</option>
             </select>
 
             <label for="employees">employees</label>

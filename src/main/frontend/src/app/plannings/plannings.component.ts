@@ -85,5 +85,48 @@ export class PlanningsComponent implements OnInit {
     edit(plan){
         this.planning=plan;
     }
+
+    getPlannings(){
+        if(this.key!=null && !this.manager){
+          this.plannings=this.planningsService.getAll()
+            .pipe(map(planning=>planning.filter(plan=>{
+              for(let i=0;i<plan.employees;i++)
+              {
+                if(plan.employees[i].id==this.id){
+                 return true;
+                }
+              }
+              return false;
+            }
+          )));
+        }else if(this.key!=null && this.manager){
+            this.plannings=this.planningsService.getAll()
+            .pipe(map(planning=>planning.filter(plan=>{
+              for(let i=0;i<plan.employees;i++)
+              {
+                if(plan.employees[i].id==this.id || plan.bath.resp.id==this.id){
+                 return true;
+                }
+              }
+              return false;
+            }
+          )));
+        }
+        return this.plannings;
+    }
+
+    getBaths(){
+      if(this.key!=null && !this.manager){
+        this.baths=this.bathsService.getAll()
+          .pipe(map(bath=>bath.filter(bat=>{
+            if(bat.resp.id==this.id){
+              return true;
+            }
+            return false;
+          }
+        )));
+      }
+      return this.baths;
+    }
 }
 

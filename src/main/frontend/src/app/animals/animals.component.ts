@@ -60,7 +60,7 @@ export class AnimalsComponent implements OnInit {
               this.animal.arrival=today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
             }
             console.log(this.animal);
-            this.animalsService.createAnimal(this.animal).subscribe(result => this.router.navigate(['']));
+            this.animalsService.createAnimal(this.animal).subscribe(result => this.setKey.emit(this.key));
     }
 
     end(){

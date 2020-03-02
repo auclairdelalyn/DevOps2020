@@ -39,7 +39,7 @@ public class AquariumApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Set<Sector>ss=new HashSet<Sector>();
+		/*Set<Sector>ss=new HashSet<Sector>();
 		Set<Sector>ss2=new HashSet<Sector>();
 		Sector s=sectorService.createSector(new Sector("PLOP", "aaaaaaaaaaa"));
 		Sector s1=sectorService.createSector(new Sector("PLOP2", "aaaaaaaaaaa"));

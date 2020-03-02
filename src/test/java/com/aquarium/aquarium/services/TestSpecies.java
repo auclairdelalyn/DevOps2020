@@ -38,7 +38,7 @@ public class TestSpecies {
         P.add(new Species("test3", 0L, Species.Regime.Piscivore, 10));
         Species p = P.get(0);
         Mockito.when(speciesService.getAll()).thenReturn(P);
-        List<Species> speciess = this.restTemplate.getForObject("http://localhost:" + port + "/speciess",
+        List<Species> speciess = this.restTemplate.getForObject("http://localhost:" + port + "/species",
                 List.class);
         assertEquals(3, speciess.size());
     }
@@ -47,7 +47,7 @@ public class TestSpecies {
     public void create() {
         Species s=new Species("test", 0L, Species.Regime.Piscivore, 10);
         Mockito.when(speciesService.createSpecies(s)).thenReturn(s);
-        Species species = this.restTemplate.postForObject("http://localhost:" + port + "/speciess",s,
+        Species species = this.restTemplate.postForObject("http://localhost:" + port + "/species",s,
                 Species.class);
         assertEquals(species.getId(), species.getId());
     }
